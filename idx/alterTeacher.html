@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html >
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title></title>
+      <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css"/>
+      <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+      <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+      <link href="editor/summernote.css" rel="stylesheet">
+      <script src="editor/summernote.js"></script>
+      <script type="text/javascript" src="datas/conf.js"></script>
+</head>
+<body>
+<div class="modal-header">
+		              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+											&times;
+					       </button>
+		              <h4 class="modal-title" align="center">修改导师信息</h4>
+		            </div>
+			      <div class="modal-body">
+            <!--  -->
+				        <form action="javascript:void()"   method="post" id="inform1" enctype="multipart/form-data"  >
+				                           <span class="">创业导师姓名：</span><input name="teacherName"  id="teacherName1"></br>
+               <span class="">创业导师单位：</span><input name="teacherUnit"  id="teacherUnit1"></br>  
+               <span class="">创业导师简介关键词：</span><input name="decKeyWord"  id="decKeyWord1"></br>
+               <span class="">创业导师证件照(指定像素Xpx*Ypx)：</span><input type="file" name="imgURL" id="imgURL1" accept=""></br>                
+               <input type="text" name="techerType" id="teacherType1" hidden="true" value="1" />
+                <!--1学院导师，2企业导师，3政府导师-->
+              <!-- <span class="">创业导师类型：</span> 
+                  <select  name="teacherType" id="teacherType1">
+                    <option value="1">学院导师</option>
+                    <option value="2">企业导师</option>
+                    <option value="3">政府导师</option>
+                  </select></br> -->
+      
+               <!--1学院导师，2企业导师，3政府导师-->
+    <!--            <span class="">导师状态：</span> 
+                  <select  name="state" id="state1">
+                    <option value="0">删除</option>
+                    <option value="1">显示</option>
+                  </select></br> -->
+
+               <div id="summernote1">
+                         <p>Hello Summernote ,<b>Hello jQuery插件库</b></p>
+               </div>
+                    <script>
+                      $(document).ready(function() {
+                          $('#summernote1').summernote();
+                      });
+                    </script>
+               <input type="hidden" name="decContent" id="decContent1"><!--点击提交的时候会把上面  summernotediv中的值放入 decContent中-->
+               <input type="hidden" name="teacherId" id="teacherId1">
+      <!--点击提交的时候会把上面  summernotediv中的值放入 decContent中-->
+      <button class="btn btn-primary" id="clickbtn1" style="display: none;" >保存</button>
+      <button style="display: none;" id="ssbt">提交</button>
+    </form>
+  </div>
+</body>
+</html>
+<script>
+             //修改
+                $(document).ready(function() {
+                       $('#summernote1').summernote();
+
+
+                        $("#clickbtn1").click( function (event) {
+  // 一个普通的点击事件时，a和b是undefined类型
+  // 如果用trigger触发，那么传入参数a="foo",b="bar"
+                       var teacher=$('#iframevalue', window.parent.document).val(); 
+                     //转化为对象
+
+                       var  t=JSON.parse(teacher);
+                       //alert(team.teamName);
+                    //   console.log(team);
+                  //  alert(t.decContent);
+                        $("#teacherId1").val(t.teacherId);
+                        $("#teacherName1").val(t.teacherName);
+                        $("#teacherUnit1").val(t.teacherUnit);
+                        $("#decKeyWord1").val(t.decKeyWord);
+                       // $("#summernote1").val(t.decContent);
+                        $('.note-editable.panel-body').html(t.decContent)
+                        if(t.imgURL==null){
+                          alert("没有图片");
+                        }else{
+                          alert(t.imgURL);
+                        }
+                   } );
+                });
+                //提交
+
+                $("#ssbt").click(function(){
+                  $("#decContent1").val($('.note-editable.panel-body').html());
+
+                  var formData = new FormData($('#inform1')[0]);
+                     //  alert($("#departmentId1").val());
+                     //  formData.append('dept.deptId',$("#departmentId1").val());
+                   $.ajax({
+                    type:"post",
+                    url:alterTeacherSta,
+                    async:true,
+                    contentType: false,    //这个一定要写
+                    processData: false, //这个也一定要写，不然会报错
+                    data:formData,
+                    dataType:'json',    //返回类型，有json，text，HTML。这里并没有jsonp格式，所以别妄想能用jsonp做跨域了。
+                    success:function(data){
+                      alert(data.statu);
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown, data){
+                        alert(errorThrown);
+                    }            
+                   })    
+                    document.location.reload()
+                })
+</script>
+
+              <script type="text/javascript">
+                  function infsubmit(team){  
+                   alert("wqeqweqw");   
+                  alert(team.teamName);
+                  $("#decContent").val($('.note-editable.panel-body').html());
+                  var formData = new FormData($('#inform')[0]);
+                     //  alert($("#departmentId1").val());
+                     //  formData.append('dept.deptId',$("#departmentId1").val());
+                   $.ajax({
+                    type:"post",
+                    url:alterTeacherSta,
+                    async:true,
+                    contentType: false,    //这个一定要写
+                    processData: false, //这个也一定要写，不然会报错
+                    data:formData,
+                    dataType:'json',    //返回类型，有json，text，HTML。这里并没有jsonp格式，所以别妄想能用jsonp做跨域了。
+                    success:function(data){
+                      alert(data.statu);
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown, data){
+                        alert(errorThrown);
+                    }            
+                   })    
+                    document.location.reload()
+              }
+                
+
+              </script>

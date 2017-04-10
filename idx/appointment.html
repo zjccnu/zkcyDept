@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Table</title>
+		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="css/global.css" media="all">
+		<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/table.css" />
+	</head>
+
+	<body>
+		<div class="admin-main">
+			<blockquote class="layui-elem-quote">
+				<form class="layui-form" action="">
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="add">
+						<i class="layui-icon">&#xe608;</i> 开始预约
+					</a>
+					<a href="#" class="layui-btn layui-btn-small" id="import">
+						<i class="layui-icon">&#xe608;</i> 修改预约
+					</a>
+					<a href="#" class="layui-btn layui-btn-small">
+						<i class="fa fa-shopping-cart" aria-hidden="true"></i> 删除预约
+					</a>
+					<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+						<i class="layui-icon">&#xe615;</i> 导出信息
+					</a>
+					<div class="layui-inline">
+							<label class="layui-form-label">起始时间</label>
+							<div class="layui-input-block">
+								<input type="text" style="width: 100px;" name="date" id="date" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})">
+							</div>
+					</div>
+					<div class="layui-inline" style="width: 130px"">
+							<label class="layui-form-label" style="width: 10px;left: -10px;">至</label>
+							<div class="layui-input-block" style="left: -80px;">
+								<input type="text" style="width: 100px;" name="date" id="date" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})">
+							</div>
+					</div>
+					<button class="layui-btn layui-btn-radius">查询</button>
+					<button class="layui-btn layui-btn-danger layui-btn-radius">清空</button>
+					<div class="layui-form-item" style="float: right;">
+						<div class="layui-input-inline" style="width: 130px;">
+							<select name="quiz2"">
+								<option value="">请选择会议室</option>
+								<option value="杭州">C201</option>
+								<option value="温州">C401</option>
+								<option value="温州">A601</option>
+								<option value="温州">A602</option>
+								<option value="宁波" disabled="">A603</option>
+							</select>
+						</div>
+					</div>
+				</form>
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>预约列表</legend>
+				<div class="layui-field-box">
+					<table class="site-table table-hover">
+						<thead>
+							<tr>
+								<th><input type="checkbox" id="selected-all"></th>
+								<th>预约人</th>
+								<th>联系电话</th>
+								<th>预约公司</th>
+								<th>身份证号码</th>
+								<th>会议室</th>
+								<th>起始时间</th>
+								<th>结束时间</th>
+								<th>添加时间</th>
+								<th>添加人</th>
+								<th>修改时间</th>
+								<th>修改人</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>Layui</td>
+								<td>15545588858</td>
+								<td>Beginner</td>
+								<td>588858854747884</td>
+								<td>c310</td>
+								<td>2016-11-16 11:50</td>
+								<td>2016-11-16 11:50</td>
+								<td>2016-11-16 11:50</td>
+								<td>dam</td>
+								<td>2016-11-16 11:50</td>
+								<td>fed</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>Layui</td>
+								<td>15545588858</td>
+								<td>Beginner</td>
+								<td>588858854747884</td>
+								<td>c310</td>
+								<td>2016-11-16 11:50</td>
+								<td>2016-11-16 11:50</td>
+								<td>2016-11-16 11:50</td>
+								<td>dam</td>
+								<td>2016-11-16 11:50</td>
+								<td>fed</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>Layui</td>
+								<td>15545588858</td>
+								<td>Beginner</td>
+								<td>588858854747884</td>
+								<td>c310</td>
+								<td>2016-11-16 11:50</td>
+								<td>2016-11-16 11:50</td>
+								<td>2016-11-16 11:50</td>
+								<td>dam</td>
+								<td>2016-11-16 11:50</td>
+								<td>fed</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>Layui</td>
+								<td>15545588858</td>
+								<td>Beginner</td>
+								<td>588858854747884</td>
+								<td>c310</td>
+								<td>2016-11-16 11:50</td>
+								<td>2016-11-16 11:50</td>
+								<td>2016-11-16 11:50</td>
+								<td>dam</td>
+								<td>2016-11-16 11:50</td>
+								<td>fed</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>Layui</td>
+								<td>15545588858</td>
+								<td>Beginner</td>
+								<td>588858854747884</td>
+								<td>c310</td>
+								<td>2016-11-16 11:50</td>
+								<td>2016-11-16 11:50</td>
+								<td>2016-11-16 11:50</td>
+								<td>dam</td>
+								<td>2016-11-16 11:50</td>
+								<td>fed</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>Layui</td>
+								<td>15545588858</td>
+								<td>Beginner</td>
+								<td>588858854747884</td>
+								<td>c310</td>
+								<td>2016-11-16 11:50</td>
+								<td>2016-11-16 11:50</td>
+								<td>2016-11-16 11:50</td>
+								<td>dam</td>
+								<td>2016-11-16 11:50</td>
+								<td>fed</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</fieldset>
+			<div class="admin-table-page">
+				<div id="page" class="page">
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="plugins/layui/layui.js"></script>
+		<script>
+			layui.config({
+				base: 'plugins/layui/modules/'
+			});
+
+			layui.use(['icheck', 'laypage','layer'], function() {
+				var $ = layui.jquery,
+					laypage = layui.laypage,
+					layer = parent.layer === undefined ? layui.layer : parent.layer;
+				$('input').iCheck({
+					checkboxClass: 'icheckbox_flat-green'
+				});
+
+				//page
+				laypage({
+					cont: 'page',
+					pages: 25 //总页数
+						,
+					groups: 5 //连续显示分页数
+						,
+					jump: function(obj, first) {
+						//得到了当前页，用于向服务端请求对应数据
+						var curr = obj.curr;
+						if(!first) {
+							//layer.msg('第 '+ obj.curr +' 页');
+						}
+					}
+				});
+
+				$('#search').on('click', function() {
+					parent.layer.alert('你点击了搜索按钮')
+				});
+
+				$('#add').on('click', function() {
+					$.get('temp/edit-form.html', null, function(form) {
+						layer.open({
+							type: 1,
+							title: '添加表单',
+							content: form,
+							btn: ['保存', '取消'],
+							area: ['600px', '400px'],
+							maxmin: true,
+							yes: function(index) {
+								console.log(index);
+							},
+							full: function(elem) {
+								var win = window.top === window.self ? window : parent.window;
+								$(win).on('resize', function() {
+									var $this = $(this);
+									elem.width($this.width()).height($this.height()).css({
+										top: 0,
+										left: 0
+									});
+									elem.children('div.layui-layer-content').height($this.height() - 95);
+								});
+							}
+						});
+					});
+				});
+
+				$('#import').on('click', function() {
+					var that = this;
+					var index = layer.tips('只想提示地精准些', that,{tips: [1, 'white']});
+					$('#layui-layer'+index).children('div.layui-layer-content').css('color','#000000');
+				});
+
+				$('.site-table tbody tr').on('click', function(event) {
+					var $this = $(this);
+					var $input = $this.children('td').eq(0).find('input');
+					$input.on('ifChecked', function(e) {
+						$this.css('background-color', '#EEEEEE');
+					});
+					$input.on('ifUnchecked', function(e) {
+						$this.removeAttr('style');
+					});
+					$input.iCheck('toggle');
+				}).find('input').each(function() {
+					var $this = $(this);
+					$this.on('ifChecked', function(e) {
+						$this.parents('tr').css('background-color', '#EEEEEE');
+					});
+					$this.on('ifUnchecked', function(e) {
+						$this.parents('tr').removeAttr('style');
+					});
+				});
+				$('#selected-all').on('ifChanged', function(event) {
+					var $input = $('.site-table tbody tr td').find('input');
+					$input.iCheck(event.currentTarget.checked ? 'check' : 'uncheck');
+				});
+			});
+		</script>
+		<script type="text/javascript" src="plugins/layui/layui.js"></script>
+		<script>
+			layui.use(['form', 'layedit', 'laydate'], function() {
+				var form = layui.form(),
+					layer = layui.layer,
+					layedit = layui.layedit,
+					laydate = layui.laydate;
+
+				//创建一个编辑器
+				var editIndex = layedit.build('LAY_demo_editor');
+				//自定义验证规则
+				form.verify({
+					title: function(value) {
+						if(value.length < 5) {
+							return '标题至少得5个字符啊';
+						}
+					},
+					pass: [/(.+){6,12}$/, '密码必须6到12位'],
+					content: function(value) {
+						layedit.sync(editIndex);
+					}
+				});
+
+				//监听提交
+				form.on('submit(demo1)', function(data) {
+					layer.alert(JSON.stringify(data.field), {
+						title: '最终的提交信息'
+					})
+					return false;
+				});
+			});
+		</script>
+	</body>
+
+</html>

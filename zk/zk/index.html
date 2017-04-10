@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+
+<!--模态框start-->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>基于velocity.js过渡动画效果的Bootstrap模态窗口和Popover</title>
+<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+<link rel="stylesheet" type="text/css" href="css/jq22-demo.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+<script src='js/velocity.min.js'></script> 
+<script src='js/velocity.ui.min.js'></script> 
+<script type="text/javascript">
+    // add the animation to the popover
+    $('a[rel=popover]').popover().click(function(e) {
+      e.preventDefault();
+      var open = $(this).attr('data-easein');
+      if (open == 'shake') {
+        $(this).next().velocity('callout.' + open);
+      } else if (open == 'pulse') {
+        $(this).next().velocity('callout.' + open);
+      } else if (open == 'tada') {
+        $(this).next().velocity('callout.' + open);
+      } else if (open == 'flash') {
+        $(this).next().velocity('callout.' + open);
+      } else if (open == 'bounce') {
+        $(this).next().velocity('callout.' + open);
+      } else if (open == 'swing') {
+        $(this).next().velocity('callout.' + open);
+      } else {
+        $(this).next().velocity('transition.' + open);
+      }
+
+    });
+    // add the animation to the modal
+    $(".modal").each(function(index) {
+      $(this).on('show.bs.modal', function(e) {
+        var open = $(this).attr('data-easein');
+        if (open == 'shake') {
+          $('.modal-dialog').velocity('callout.' + open);
+        } else if (open == 'pulse') {
+          $('.modal-dialog').velocity('callout.' + open);
+        } else if (open == 'tada') {
+          $('.modal-dialog').velocity('callout.' + open);
+        } else if (open == 'flash') {
+          $('.modal-dialog').velocity('callout.' + open);
+        } else if (open == 'bounce') {
+          $('.modal-dialog').velocity('callout.' + open);
+        } else if (open == 'swing') {
+          $('.modal-dialog').velocity('callout.' + open);
+        } else {
+          $('.modal-dialog').velocity('transition.' + open);
+        }
+      });
+    });
+</script>
+<!--模态框end-->
+
+
+<!--editorstart-->
+<!--
+  <link href="http://www.jq22.com/jquery/bootstrap-3.3.4.css" rel="stylesheet">
+  <script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script> 
+-->
+  <link href="editor/summernote.css" rel="stylesheet">
+  <script src="editor/summernote.js"></script>
+  <script>
+        function infsubmit(){
+
+              $("#decContent").val($('.note-editable.panel-body').html());  //$('.note-editable.panel-body').html()
+              //$("#inform").action="127.0.0.1:8000/ls/shou";
+              //$("#inform").submit();
+              var formd = new FormData($('#inform'));
+               $.post("http://127.0.0.1:8000/ls/shou",formd,
+               function(data,status){
+                 alert("数据：" + data + "\n状态：" + status);
+               });
+
+
+
+         /*
+          {
+                        teamName:$('#teamName').val(),
+                        stateEnter:$('#stateEnter').val(),
+                        stateSchool:$('#stateSchool').val(),
+                        roomNumber:$('#roomNumber').val(),
+                        departmentId:$('#departmentId').val(),
+                        decKeyWord:$('#decKeyWord').val(),
+                        sort:$('#sort').val(),
+                        logoURL:$('#logoURL').val(),
+                        decContent:$('#decContent').val(),
+                        teamType:$('#teamType').val(),
+                        state:$('#state').val()
+
+               }
+         */
+        }
+  </script>
+<!--editorend-->
+
+
+
+
+</head>
+<body>
+
+      <a href="#myModal10" role="button" class="btn btn-default" data-toggle="modal">团队登记</a>
+
+
+
+      <div id="myModal10" class="modal" data-easein="bounceIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title" align="center">团队信息登记</h4>
+            </div>
+
+     <form  action="http://127.0.0.1:8000/ls/shou"   method="post" id="inform" enctype="multipart/form-data">
+              <div class="modal-body" >
+               <span class="">团队名称：</span><input name="teamName"  id="teamName"></br>
+               <span class="">入驻状况：</span>
+                                <select  name="stateEnter" id="stateEnter">
+                                  <option value="1">已入驻</option>
+                                  <option value="0">未入驻</option>
+                                </select></br>
+              <span class="">是否为校内团队：</span>
+                                <select  name="stateSchool" id="stateSchool">
+                                  <option value="1">校内</option>
+                                  <option value="0">校外</option>
+                                </select></br>
+              <span class="">房间号(还未入驻不填写)：</span><input name="roomName" id="roomName"></br>
+              <span class="">院系：</span>  <!--院系从接口填入(院系id,名字)序列-->
+                                <select  name="departmentId"  id="departmentId">
+                                  <option value="1">计算机学院</option>
+                                  <option value="0">哈哈哈</option>
+                                </select></br>
+              <span class="">主页显示序列：</span><!--主页显示x张，设置显示位置，如果显示位置已经有则替换，不显示则为0-->
+                                <select  name="sort"  id="sort">
+                                  <option value="3">位置3</option>
+                                  <option value="2">位置2</option>
+                                  <option value="1">位置1</option>
+                                  <option value="0">不在主页显示</option>
+                                </select></br>
+              <span class="">关键词：</span><input name="decKeyWord" id="decKeyWord"></br>
+              <span class="">团队类型：</span>                                
+                                <select  name="teamType" id="teamType">
+                                  <!--1表示电子商务、2表示公益创业和文化创意、3信息技术、4教育产业、5其他-->
+                                  <option value="1">电子商务</option>
+                                  <option value="2">公益创业和文化创意</option>
+                                  <option value="3">信息技术</option>
+                                  <option value="4">教育产业</option>
+                                  <option value="5">其它</option>
+                                </select></br>
+              <span class="">团队状态：</span>
+                                <select  name="state" id="state">
+                                  <option value="1">显示</option>
+                                  <option value="0">删除</option>
+                                </select></br>               
+              <span class="">团队logo(指定像素Xpx*Ypx)：</span><input type="file" name="logoURL" id="logoURL" accept=""></br>
+              <!--
+                   团队介绍内容
+              -->
+                 <div id="summernote">
+                         <p>Hello Summernote ,<b>Hello jQuery插件库</b></p>
+                 </div>
+                      <script>
+                        $(document).ready(function() {
+                            $('#summernote').summernote();
+                        });
+                      </script>
+      </div>
+            <input type="hidden" name="decContent" id="decContent"><!--点击提交的时候会把上面  summernotediv中的值放入 decContent中-->
+            
+
+
+            <div class="modal-footer">
+              <button class="btn btn-default" data-dismiss="modal" aria-hidden="true"]>返回</button>
+              <button class="btn btn-primary" id="" onclick="infsubmit()" >保存</button>
+            </div>
+          
+
+    </form>
+
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+</body>
+</html>

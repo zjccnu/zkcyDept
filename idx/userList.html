@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Table</title>
+            <!-- 新 Bootstrap 核心 CSS 文件 -->
+		 <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> 
+		<!-- 可选的Bootstrap主题文件（一般不使用） -->
+		<!-- <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script> -->
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
+		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="css/global.css" media="all">
+		<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/table.css" />
+		<!-- 引入vue -->
+		   <script type="text/javascript"  src="js/vue.js"></script>
+        <script type="text/javascript" src="js/vue-resource.js"></script>
+       <!-- 引入jquery -->
+        <script type="text/javascript" src="plugins/layui/layui.js"></script>
+        <script type="text/javascript" src="datas/conf.js"></script>
+        <script type="text/javascript" src="js/userList.js"></script>
+	</head>
+	<body>
+	<div id="box">
+		<div class="admin-main">
+			<blockquote class="layui-elem-quote">
+<!-- 			    <div  data-toggle="modal"  data-target="#resigster"> -->
+				 <a href="javascript:;" class="layui-btn layui-btn-small"  id="add" 
+				 data-toggle="modal"  data-target="#resigster"> 
+					<i class="layui-icon" >&#xe608;</i> 添加用户
+				</a> 
+				<a href="#" class="layui-btn layui-btn-small">
+					<i class="fa fa-shopping-cart" aria-hidden="true"></i>锁定用户
+				</a>
+				<a href="#" class="layui-btn layui-btn-small" id="import">
+					<i class="layui-icon">&#xe608;</i> 启用用户
+				</a>
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+					<i class="layui-icon">&#xe615;</i> 还原密码
+				</a>
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>用户列表</legend>
+				<div class="layui-field-box">
+					<table class="site-table table-hover">
+						<thead>
+							<tr>
+								<!-- <th><input type="checkbox" id="selected-all"></th> -->
+								<th>用户名</th>
+								<th>公司名称</th>
+								<th>用户类型</th>
+								<th>创建时间</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr  v-for="(item,index) in userinfo">
+							<!-- 	<td><input type="checkbox"></td> -->
+								<td>{{item.username}} </td>
+								<td>gle</td>
+								<!-- 条件判断 -->
+								<td> <div v-if="item.flag==1">管理员</div>
+                                     <div v-else>非管理员</div>
+								</td>
+								<td>{{item.createTime}}</td>
+								<td style="text-align:center;"><div v-if='item.flag==1'><i class="layui-icon" style="color:green;"></i>
+								</div></td>
+								<td>
+									<a href="javascript:;" class="layui-btn layui-btn-mini" data-toggle="modal"  data-target="#alter" @click="alter(index)" >编辑</a>
+									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini" @click="deleteUser(index)">删除</a>
+								</td>
+							</tr>
+						
+						</tbody>
+					</table>
+          
+				</div>
+			</fieldset>
+                     
+                 <!-- 模态框分页 -->
+               
+                 <!-- 模态框内容 -->
+         <div class="modal fade" id="resigster" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+		            <div class="modal-header">
+		              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+											&times;
+					  </button>
+		              <h4 class="modal-title" align="center">增加管理员</h4>
+		            </div>
+			     <div class="modal-body">
+				        <form   method="post" id="inform" enctype="multipart/form-data" >
+				                 <span class="">管理员账号：</span><input name="userName"  id="userName" ></br>
+				               <span class="">管理员密码:</span><input name="userPasswrod"  id="userPasswrod"
+				               ></br>  
+				               <span class="">管理员昵称：</span><input name="nickName"  id="nickName" ></br>
+				               <span class="">管理员图片：</span><input type="file" name="imgURL" id="imgURL" accept=""></br> 
+				         
+				         </form>
+			       </div>  
+		          <div class="modal-footer">
+		              <input type="reset" class="btn btn-default" data-dismiss="modal" aria-hidden="true"  ></input>
+		              <input type="submit" id="submit" class="btn btn-primary" ></input>
+		          </div>   
+		
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+     <!-- 模态框内容 -->
+         <div class="modal fade" id="alter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+		            <div class="modal-header">
+		              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+											&times;
+					  </button>
+		              <h4 class="modal-title" align="center">增加管理员</h4>
+		            </div>
+			     <div class="modal-body">
+				        <form   method="post" id="inform" enctype="multipart/form-data" >
+				                <input type="text" name="userId" id="userId" hidden="true" />
+				                 <span class="">管理员账号：</span><input name="userNameAl"  id="userNameAl" ></br>
+				               <span class="">管理员密码:</span><input name="userPasswrodAl"  id="userPasswrodAl"
+				               ></br>  
+				               <span class="">管理员昵称：</span><input name="nickNameAl"  id="nickNameAl" ></br>
+				               <span class="">管理员图片：</span><input type="file" name="imgURLAl" id="imgURLAl" accept=""></br> 
+				         
+				         </form>
+			       </div>  
+		          <div class="modal-footer">
+		              <input type="reset" class="btn btn-default" data-dismiss="modal" aria-hidden="true"  ></input>
+		              <input type="submit" id="submitAl" class="btn btn-primary"  data-dismiss="modal" aria-hidden="true" ></input>
+		          </div>   
+		
+			</div>
+		</div>
+	</div>
+
+
+
+			<div class="admin-table-page">
+				<div id="page" class="page">
+				</div>
+			</div>
+		</div>
+   
+      
+	</body>
+
+</html>

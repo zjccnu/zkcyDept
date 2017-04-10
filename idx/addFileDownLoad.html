@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html >
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title></title>
+      <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css"/>
+      <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+      <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+      <link href="editor/summernote.css" rel="stylesheet">
+      <script src="editor/summernote.js"></script>
+      <script type="text/javascript" src="datas/conf.js"></script>
+</head>
+<body>
+<div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                      &times;
+                 </button>
+                  <h4 class="modal-title" align="center">添加文件</h4>
+                </div>
+            <div class="modal-body">
+                <form   method="post" id="inform" enctype="multipart/form-data"  >
+                                      <span class="">文件名：</span><input name="fileName"  id="fileName"></br>
+               <span class="">文件上传者:</span><input name="fileOwner"  id="fileOwner"></br>  
+               <span class="">资料下载次数:</span><input name="counts"  id="counts"></br>
+               <span class="">文件上传：</span><input type="file" name="fileURL" id="fileURL" accept=""></br>  
+               <span class="">文件简介：</span><input name="fileDec"  id="fileDec"></br>
+               <input type="hidden" name="fileId" id="fileId">
+      <!--点击提交的时候会把上面  summernotediv中的值放入 decContent中-->
+      <button class="btn btn-primary" id="clickbtn" onclick="infsubmit()" style="display: none;" >保存</button>
+    </form>
+  </div>
+</body>
+</html>
+              <script type="text/javascript">
+                  function infsubmit(){  
+                    if(isDebug){
+                      alert(12312);
+                    }
+                  var formData = new FormData($('#inform')[0]);
+                   $.ajax({
+                    type:"post",
+                    url:adddownLoadInfoSta,
+                    async:true,
+                    contentType: false,    //这个一定要写
+                    processData: false, //这个也一定要写，不然会报错
+                    data:formData,
+                    dataType:'json',    //返回类型，有json，text，HTML。这里并没有jsonp格式，所以别妄想能用jsonp做跨域了。
+                    success:function(data){
+                      alert(data.statu);
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown, data){
+                        alert(errorThrown);
+                    }            
+                   })    
+                    document.location.reload()
+              }
+                
+              </script>

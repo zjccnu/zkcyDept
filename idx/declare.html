@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Table</title>
+            <!-- 新 Bootstrap 核心 CSS 文件 -->
+		 <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> 
+		<!-- 可选的Bootstrap主题文件（一般不使用） -->
+		<!-- <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script> -->
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="css/global.css" media="all">
+		<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/table.css" />
+		<!-- 引入vue -->
+		<!-- <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/vue.resource/1.2.0/vue-resource.min.js"></script> -->
+        <script type="text/javascript"  src="js/vue.js"></script>
+        <script type="text/javascript" src="js/vue-resource.js"></script>
+       <!-- 引入jquery -->
+        <script type="text/javascript" src="plugins/layui/layui.js"></script>
+        <script type="text/javascript" src="datas/conf.js"></script>
+        <script type="text/javascript" src="js/message.js"></script>
+	</head>
+	<body>
+	<input type="text" name="type" id="type"  value="3"  hidden="true" />
+	<!-- 给ifram传值 -->
+	<input type="text" name="iframevalue" value="zjzjzj"   id="iframevalue" hidden="true"/>
+
+	<div id="box">
+
+		<div class="admin-main">
+			<blockquote class="layui-elem-quote">
+<!-- 			    <div  data-toggle="modal"  data-target="#resigster"> -->
+				 <a href="javascript:;" class="layui-btn layui-btn-small"  id="add" 
+				 data-toggle="modal"  data-target="#addTeam"> 
+					<i class="layui-icon" >&#xe608;</i> 添加用户
+				</a> 
+			
+				<a href="#" class="layui-btn layui-btn-small">
+					<i class="fa fa-shopping-cart" aria-hidden="true"></i>锁定用户
+				</a>
+				<a href="#" class="layui-btn layui-btn-small" id="import">
+					<i class="layui-icon">&#xe608;</i> 启用用户
+				</a>
+				<a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+					<i class="layui-icon">&#xe615;</i> 还原密码
+				</a>
+			</blockquote>
+			<fieldset class="layui-elem-field">
+				<legend>电子商务</legend>
+				<div class="layui-field-box">
+					<table class="site-table table-hover">
+						<thead>
+							<tr>
+								<!-- <th><input type="checkbox" id="selected-all"></th> -->
+								<th>通知ID</th>
+								<th>通知标题</th>
+								<th>通知来源</th>
+								<th>时间</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr  v-for="(item,index) in messageInfo">
+							<!-- 	<td><input type="checkbox"></td> -->
+								<td>{{item.messageId}} </td>
+								<td>{{item.messageTittle}}</td>
+								<!-- 条件判断 -->
+								<td>{{item.messageSource}}</td>
+								<td>{{item.time}}</td>
+								<td>
+									<a href="javascript:;" class="layui-btn layui-btn-mini" data-toggle="modal"  data-target="#alter" @click="alter(index)" >编辑</a>
+									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini" @click="deleteMessage(index)">删除</a>
+								</td>
+							</tr>
+						
+						</tbody>
+					</table>
+          
+				</div>
+			</fieldset>
+                     
+                 <!-- 模态框分页 -->
+ 
+                 <!-- 模态框内容 -->
+         <div class="modal fade" id="addTeam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+		               	<iframe src="addMessage.html" width="600px" height="1000px;" id="textIframe" name="textIframe">
+			   				document.location.reload(true) 
+			   			</iframe>
+		          <div class="modal-footer">
+		              <input type="reset" class="btn btn-default"  ></input>
+		              <input type="button" id="submit" class="btn btn-primary"  data-dismiss="modal" value="提交"></input>
+		          </div>   
+		
+			</div>
+		</div>
+	   </div>
+     <!-- 模态框内容 -->
+     <div class="modal fade" id="alter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+		             	<iframe src="alterMessage.html" width="600px" height="1000px;" id="textIframe1" name="textIframe1">
+			   			<!-- 	document.location.reload(true) -->
+			   			</iframe>
+
+		          <div class="modal-footer">
+		              <input type="reset" class="btn btn-default" ></input>
+		              <input type="submit" id="submitAl" class="btn btn-primary"  data-dismiss="modal" aria-hidden="true" ></input>
+		          </div>   
+		
+			</div>
+		</div>
+	   </div>
+
+
+
+		 <div class="admin-table-page">
+				<div id="page" class="page">
+				</div>
+			 </div>
+		   </div>
+   
+     
+	</body>
+
+</html>
+
