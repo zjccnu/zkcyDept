@@ -2,9 +2,9 @@
 //测试ip
 var isDebug=true;
 
-var i="http://192.168.1.101:8088";
+var i="http://10.148.21.175:8088";
 //端口ip
-var IP="http://192.168.1.101:9000";
+var IP="http://10.148.21.175:9000";
 //查询管理员
 var userSta= IP+"/user";
 //删除用户

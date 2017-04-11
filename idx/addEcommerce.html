@@ -92,11 +92,11 @@
 
               <script type="text/javascript">
                   function infsubmit(){  
-                    var type=$('#type', window.parent.document).val(); 
+                  var type=$('#type', window.parent.document).val(); 
                   $("#decContent").val($('.note-editable.panel-body').html());
-                  
                   var formData = new FormData($('#inform')[0]);
                   formData.append('teamType',type);
+                  console.log(type)
                      //  alert($("#departmentId1").val());
                      //  formData.append('dept.deptId',$("#departmentId1").val());
                    $.ajax({
