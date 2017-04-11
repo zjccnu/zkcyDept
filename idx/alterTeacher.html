@@ -90,10 +90,12 @@
                 });
                 //提交
 
-                $("#ssbt").click(function(){
+                 $("#ssbt").click(function(){
                   $("#decContent1").val($('.note-editable.panel-body').html());
 
                   var formData = new FormData($('#inform1')[0]);
+                   var teacherType=$('#type', window.parent.document).val(); 
+                   formData.append('teacherType',teacherType);
                      //  alert($("#departmentId1").val());
                      //  formData.append('dept.deptId',$("#departmentId1").val());
                    $.ajax({

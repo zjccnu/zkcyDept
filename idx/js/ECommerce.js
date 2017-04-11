@@ -12,14 +12,11 @@ window.onload=function(){
                       stateEnter:'',
                       stateSchool:'',
                       roomNumber:'',
-                      dept:{
-                      	deptId:'',
-                      	deptName:'',
-                      	deptState:''
-                      },
+                      departmentName:'',
                       decKeyWord:'',
                       sort:'',
                       logoURL:'',
+                      imageURL:''
     				},
     				/*记录当前需要删除的id*/
     			   seriNum:-1,

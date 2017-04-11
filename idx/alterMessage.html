@@ -36,8 +36,8 @@
                             <span class="">通知标题图片地址(指定像素Xpx*Ypx)：</span><input type="file" name="imgURL" id="imgURL1" accept=""></br>
 
 
-                            <span class="">通知类型：</span><!--1表示创业新闻、2表示政策法规、3创业项目申报、4创业基金、5创业奖金、6企业动态、7创业沙龙-->
-                                <select  name="messageType" id="messageType1">
+                            <!-- <span class="">通知类型：</span> --><!--1表示创业新闻、2表示政策法规、3创业项目申报、4创业基金、5创业奖金、6企业动态、7创业沙龙-->
+                              <!--   <select  name="messageType" id="messageType1">
                                   <option value="1">创业新闻</option>
                                   <option value="2">表示政策法规</option>
                                   <option value="3">创业项目申报</option>
@@ -45,7 +45,7 @@
                                   <option value="5">创业奖金</option>
                                   <option value="6">企业动态</option>
                                   <option value="7">创业沙龙</option>
-                                </select></br>
+                                </select></br> -->
 
 
                             <span class="">浏览次数：</span><input name="counts"  id="counts1"></br>
@@ -99,7 +99,8 @@
                 $("#ssbt").click(function(){
                  $("#newsContent1").val($('.note-editable.panel-body').html());
                  var formData = new FormData($('#inform1')[0]);  //
-         
+                 var messageType=$('#type', window.parent.document).val(); 
+                formData.append('messageType',messageType);
                 $.ajax({
                     type:"post",
                     url:alterMessageSta,

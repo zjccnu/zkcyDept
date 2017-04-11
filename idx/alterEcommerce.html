@@ -33,14 +33,14 @@
                                   <option value="1"  selected = "selected">校内</option>
                                   <option value="0">校外</option>
                                 </select></br>
-                  <span class="">房间号(还未入驻不填写)：</span><input name="roomName" id="roomName1"></br>
+                  <span class="">房间号(还未入驻不填写)：</span><input name="roomNumber" id="roomNumber1"></br>
                   <span class="">院系：</span>  <!--院系从接口填入(院系id,名字)序列-->
                           <!--       <select  name="dept.deptId"  id="departmentId">
                                   <option value="1"  selected = "selected">计算机学院</option>
                                   <option value="0">哈哈哈</option>
                                 </select></br>
  -->
-                                 <input type="text" name="dept.deptId" id="deptId1" />
+                                 <input type="text" name="departmentName" id="departmentName1" />
                                   </br>
                   <span class="">主页显示序列：</span><!--主页显示x张，设置显示位置，如果显示位置已经有则替换，不显示则为0-->
                                     <select  name="sort"  id="sort1">
@@ -50,21 +50,17 @@
                                       <option value="0">不在主页显示</option>
                                     </select></br>
                   <span class="">关键词：</span><input name="decKeyWord" id="decKeyWord1"></br>
-                  <span class="">团队类型：</span>                                
-                                <select  name="teamType" id="teamType1">
-                                  <!--1表示电子商务、2表示公益创业和文化创意、3信息技术、4教育产业、5其他-->
-                                  <option value="1"  selected = "selected">电子商务</option>
-                                  <option value="2">公益创业和文化创意</option>
-                                  <option value="3">信息技术</option>
-                                  <option value="4">教育产业</option>
-                                  <option value="5">其它</option>
-                                </select></br>
-                  <span class="">团队状态：</span>
+                   <span class="">团队负责人</span><input name="owner" id="owner1">
+                   </br>
+                    <span class="">负责人电话:</span><input name="phoneNumber" id="phoneNumber1"></br>
+ <!--                  <span class="">团队状态：</span>
                                     <select  name="state" id="state1">
                                       <option value="1"  selected = "selected">显示</option>
                                       <option value="0">删除</option>
-                                    </select></br>               
+                                    </select></br>    -->            
                   <span class="">团队logo(指定像素Xpx*Ypx)：</span><input type="file" name="logoURL" id="logoURL1" accept=""></br>
+                   
+                  <span class="">团队头像(指定像素Xpx*Ypx)：</span><input type="file" name="imgUrl" id="imgUrl1" accept=""></br>
               <!--
                    团队介绍内容
             <!--editorend-->
@@ -94,13 +90,14 @@
                        var team=$('#iframevalue', window.parent.document).val(); 
                      //转化为对象
                         team=JSON.parse(team);
-                       //alert(team.teamName);
-                    //   console.log(team);
                         $("#teamName1").val(team.teamName);
                         $("#stateEnter1").val(team.stateEnter);
                         $("#stateSchool1").val(team.stateSchool);
-                        $("#roomName1").val(team.roomName);
-                        $("#deptId1").val(team.deptId);
+                        $("#roomNumber1").val(team.roomNumber);
+                        console.log(team);
+                        $("#departmentName1").val(team.departmentName);
+                        $("#phoneNumber1").val(team.phoneNumber);
+                        $("#owner1").val(team.owner)
                         $("#sort1").val(team.sort);
                         $("#decKeyWord1").val(team.decKeyWord);
                         $("#teamType1").val(team.teamType);
@@ -122,6 +119,8 @@
                   var formData = new FormData($('#inform1')[0]);
                      //  alert($("#departmentId1").val());
                      //  formData.append('dept.deptId',$("#departmentId1").val());
+                   var type=$('#type', window.parent.document).val(); 
+                   formData.append('teamType',type);
                    $.ajax({
                     type:"post",
                     url:alterTeamSta,

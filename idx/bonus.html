@@ -23,12 +23,13 @@
        <!-- 引入jquery -->
         <script type="text/javascript" src="plugins/layui/layui.js"></script>
         <script type="text/javascript" src="datas/conf.js"></script>
-        <script type="text/javascript" src="js/ECommerce.js"></script>
+        <script type="text/javascript" src="js/message.js"></script>
 	</head>
 	<body>
-	<input type="text" name="type" id="type"  value="1"  hidden="true" />
+	<input type="text" name="type" id="type"  value="5"  hidden="true" />
 	<!-- 给ifram传值 -->
 	<input type="text" name="iframevalue" value="zjzjzj"   id="iframevalue" hidden="true"/>
+
 	<div id="box">
 
 		<div class="admin-main">
@@ -56,38 +57,24 @@
 						<thead>
 							<tr>
 								<!-- <th><input type="checkbox" id="selected-all"></th> -->
-								<th>团队名称</th>
-								<th>入住状态</th>
-								<th>校内/外</th>
-								<th>房间号</th>
-								<th>所属院系</th>
-								<th>排序</th>
+								<th>通知ID</th>
+								<th>通知标题</th>
+								<th>通知来源</th>
+								<th>时间</th>
 								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr  v-for="(item,index) in teamInfo">
+							<tr  v-for="(item,index) in messageInfo">
 							<!-- 	<td><input type="checkbox"></td> -->
-								<td>{{item.teamName}} </td>
-								<td>
-								    <div v-if="item.stateEnter==1">已入住</div>
-                                     <div v-else>未入住</div> 
-								</td>
+								<td>{{item.messageId}} </td>
+								<td>{{item.messageTittle}}</td>
 								<!-- 条件判断 -->
-								<td> <div v-if="item.stateSchool==1">校内</div>
-                                     <div v-else>校外</div>
-								</td>
-
-								<td>{{item.roomNumber}}</td>
-                                    <!-- 这里有点小问题 -->
-                                 <!-- 先判断 -->
-								 <td > {{item.departmentName}}</td> 
-								<td>
-								  {{item.sort}}
-								</td>
+								<td>{{item.messageSource}}</td>
+								<td>{{item.time}}</td>
 								<td>
 									<a href="javascript:;" class="layui-btn layui-btn-mini" data-toggle="modal"  data-target="#alter" @click="alter(index)" >编辑</a>
-									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini" @click="deleteTeam(index)">删除</a>
+									<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini" @click="deleteMessage(index)">删除</a>
 								</td>
 							</tr>
 						
@@ -103,7 +90,7 @@
          <div class="modal fade" id="addTeam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-		               	<iframe src="addEcommerce.html" width="600px" height="1000px;" id="textIframe" name="textIframe">
+		               	<iframe src="addMessage.html" width="600px" height="1000px;" id="textIframe" name="textIframe">
 			   				document.location.reload(true) 
 			   			</iframe>
 		          <div class="modal-footer">
@@ -118,7 +105,7 @@
      <div class="modal fade" id="alter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-		             	<iframe src="alterEcommerce.html" width="600px" height="1000px;" id="textIframe1" name="textIframe1">
+		             	<iframe src="alterMessage.html" width="600px" height="1000px;" id="textIframe1" name="textIframe1">
 			   			<!-- 	document.location.reload(true) -->
 			   			</iframe>
 
@@ -130,6 +117,9 @@
 			</div>
 		</div>
 	   </div>
+
+
+
 		 <div class="admin-table-page">
 				<div id="page" class="page">
 				</div>

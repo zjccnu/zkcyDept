@@ -20,7 +20,7 @@
 		              <h4 class="modal-title" align="center">添加通知</h4>
 		            </div>
 			      <div class="modal-body">
-				        <form   method="post" id="inform" enctype="multipart/form-data"  >
+				        <form  action="javascript:void()"  method="post" id="inform" enctype="multipart/form-data"  >
       				          <span class="">通知标题：</span><input name="messageTittle"  id="messageTitile"></br>
                         <span class="">通知关键字：</span><input name="messageKeyWord"  id="messageKeyWord"></br>
                         <span class="">通知来源：</span><input name="messageSource"  id="messageSource"></br>
@@ -33,7 +33,7 @@
                               </select></br>
                         <span class="">通知标题图片地址(指定像素Xpx*Ypx)：</span><input type="file" name="imgURL" id="imgURL" accept=""></br>
                         <span class="">通知类型：</span><!--1表示创业新闻、2表示政策法规、3创业项目申报、4创业基金、5创业奖金、6企业动态、7创业沙龙-->
-                            <select  name="messageType" id="messageType">
+                            <!-- <select  name="messageType" id="messageType">
                               <option value="1">创业新闻</option>
                               <option value="2">表示政策法规</option>
                               <option value="3">创业项目申报</option>
@@ -41,7 +41,7 @@
                               <option value="5">创业奖金</option>
                               <option value="6">企业动态</option>
                               <option value="7">创业沙龙</option>
-                            </select></br>
+                            </select></br> -->
                         <span class="">浏览次数：</span><input name="counts"  id="counts"></br>
                          <div id="summernote">
                              <p>Hello Summernote ,<b>Hello jQuery插件库</b></p>
@@ -57,12 +57,15 @@
 <script>
                 $(document).ready(function() {
                        $('#summernote').summernote();
+
                 });
 </script>
               <script type="text/javascript">
                   function infsubmit(){  
+                   var messageType=$('#type', window.parent.document).val(); 
                   $("#newsContent").val($('.note-editable.panel-body').html());
                   var formData = new FormData($('#inform')[0]);
+                  formData.append('messageType',messageType);
                      //  alert($("#departmentId1").val());
                      //  formData.append('dept.deptId',$("#departmentId1").val());
                    $.ajax({

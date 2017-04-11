@@ -32,15 +32,13 @@
                                   <option value="1"  selected = "selected">校内</option>
                                   <option value="0">校外</option>
                                 </select></br>
-		              <span class="">房间号(还未入驻不填写)：</span><input name="roomName" id="roomName"></br>
+		              <span class="">房间号(还未入驻不填写)：</span><input name="roomNumber" id="roomNumber"></br>
 		              <span class="">院系：</span>  <!--院系从接口填入(院系id,名字)序列-->
                           <!--       <select  name="dept.deptId"  id="departmentId">
                                   <option value="1"  selected = "selected">计算机学院</option>
                                   <option value="0">哈哈哈</option>
                                 </select></br>
- -->
-                                 <input type="text" name="dept.deptId" id="deptId" />
-                                  </br>
+ -->                
 		              <span class="">主页显示序列：</span><!--主页显示x张，设置显示位置，如果显示位置已经有则替换，不显示则为0-->
 		                                <select  name="sort"  id="sort">
 		                                  <option value="3"  selected="selected">位置3</option>
@@ -49,21 +47,27 @@
 		                                  <option value="0">不在主页显示</option>
 		                                </select></br>
 		              <span class="">关键词：</span><input name="decKeyWord" id="decKeyWord"></br>
-		              <span class="">团队类型：</span>                                
-                                <select  name="teamType" id="teamType">
+                   <span class="">院系名：</span><input name="departmentName" id="departmentName"></br>
+                  <span class="">团队负责人</span><input name="owner" id="owner">
+                   </br>
+                    <span class="">负责人电话:</span><input name="phoneNumber" id="phoneNumber"></br>
+
+		           <!--    <span class="">团队类型：</span>                                
+                                <select  name="teamType" id="teamType"> -->
                                   <!--1表示电子商务、2表示公益创业和文化创意、3信息技术、4教育产业、5其他-->
-                                  <option value="1"  selected = "selected">电子商务</option>
+                                <!--   <option value="1"  selected = "selected">电子商务</option>
                                   <option value="2">公益创业和文化创意</option>
                                   <option value="3">信息技术</option>
                                   <option value="4">教育产业</option>
                                   <option value="5">其它</option>
-                                </select></br>
+                                </select></br> -->
 		              <span class="">团队状态：</span>
 		                                <select  name="state" id="state">
 		                                  <option value="1"  selected = "selected">显示</option>
 		                                  <option value="0">删除</option>
 		                                </select></br>               
 		              <span class="">团队logo(指定像素Xpx*Ypx)：</span><input type="file" name="logoURL" id="logoURL" accept=""></br>
+                  <span class="">团队头像(指定像素Xpx*Ypx)：</span><input type="file" name="imgUrl" id="imgUrl" accept=""></br>
               <!--
                    团队介绍内容
             <!--editorend-->
@@ -88,8 +92,11 @@
 
               <script type="text/javascript">
                   function infsubmit(){  
+                    var type=$('#type', window.parent.document).val(); 
                   $("#decContent").val($('.note-editable.panel-body').html());
+                  
                   var formData = new FormData($('#inform')[0]);
+                  formData.append('teamType',type);
                      //  alert($("#departmentId1").val());
                      //  formData.append('dept.deptId',$("#departmentId1").val());
                    $.ajax({

@@ -28,11 +28,11 @@
                <span class="">创业导师证件照(指定像素Xpx*Ypx)：</span><input type="file" name="imgURL" id="imgURL" accept=""></br>                
 
               <span class="">创业导师类型：</span>  <!--1学院导师，2企业导师，3政府导师-->
-                  <select  name="teacherType" id="teacherType">
+                  <!-- <select  name="teacherType" id="teacherType">
                     <option value="1">学院导师</option>
                     <option value="2">企业导师</option>
                     <option value="3">政府导师</option>
-                  </select></br>
+                  </select></br> -->
 
 <!--1学院导师，2企业导师，3政府导师-->
               <!--  <span class="">导师状态：</span>  
@@ -65,9 +65,10 @@
 
               <script type="text/javascript">
                   function infsubmit(){  
+                  var teacherType=$('#type', window.parent.document).val(); 
                   $("#decContent").val($('.note-editable.panel-body').html());
-                  alert($("#decContent").val());
                   var formData = new FormData($('#inform')[0]);
+                  formData.append('teacherType',teacherType);
                      //  alert($("#departmentId1").val());
                      //  formData.append('dept.deptId',$("#departmentId1").val());
                    $.ajax({

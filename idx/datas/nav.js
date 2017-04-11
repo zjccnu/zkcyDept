@@ -5,11 +5,27 @@ var navs = [{
 	"children": [{
 		"title": "学院简介",
 		"icon": "&#xe60c;",
-		"href": ""
-	}, {
+		"href": "college.html"
+	},{
+		"title": "机构设置",
+		"icon": "&#xe60c;",
+		"href": "InstitutionalSet.html"
+	},{
+		"title": "制度设置",
+		"icon": "&#xe60c;",
+		"href": "systemSet.html"
+	},{
+		"title": "学院历史",
+		"icon": "&#xe60c;",
+		"href": "collegeHistory.html"
+	},{
+		"title": "人员设置",
+		"icon": "&#xe60c;",
+		"href": "personnelSet.html"
+	},{
 		"title": "联系我们",
 		"icon": "&#xe63c;",
-		"href": ""
+		"href": "contact.html"
 	}]
 },{
 	"title": "创业企业",
@@ -51,7 +67,7 @@ var navs = [{
 	}, {
 		"title": "创业沙龙",
 		"icon": "&#xe63c;",
-		"href": ""
+		"href": "SalonEntrepreneurial.html"
 	}]
 },{
 	"title": "创业扶持",
@@ -68,11 +84,11 @@ var navs = [{
 	}, {
 		"title": "创业基金",
 		"icon": "&#xe63c;",
-		"href": ""
+		"href": "fund.html"
 	}, {
 		"title": "创业奖金",
 		"icon": "&#xe63c;",
-		"href": ""
+		"href": "bonus.html"
 	}]
 },{
 	"title": "创业导师",
@@ -102,11 +118,11 @@ var navs = [{
 	}, {
 		"title": "通知公告",
 		"icon": "&#xe63c;",
-		"href": "enterpriseTeacher.html"
+		"href": "notice.html"
 	}, {
 		"title": "企业动态",
 		"icon": "&#xe63c;",
-		"href": "governmentTeacher.html"
+		"href": "dynamicEnterprise.html"
 	}]
 },{
 	"title": "创业服务",
@@ -129,10 +145,6 @@ var navs = [{
 		"title": "资料下载",
 		"icon": "&#xe63c;",
 		"href": "FileDownLoad.html"
-	}, {
-		"title": "留言互动",
-		"icon": "&#xe63c;",
-		"href": ""
 	}]
 },{
 	"title": "用户管理",
